@@ -1,0 +1,14 @@
+exp_name: iia12
+
+train:
+  need_train: True
+  loss_config: PermInvariantSISDR_Train
+  batch_size: 16
+  reference_type: null
+  reference_drop_rate: 0
+  sampling_rate: 16000
+  max_epoch: 100
+  lr: 0.001
+  weight_decay: 0.1
+  num_chunks: 5
+  recover_weight: 0.05

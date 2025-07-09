@@ -1,0 +1,45 @@
+audionet:
+  n_src: 2
+  pretrained_vout_chan: 1024                 # output from pretrained model
+
+  num_blocks: 12
+  audio_fusion_dim: 128
+  video_fusion_dim: 128
+  audio_hidden_dim: 128
+  video_hidden_dim: 128
+  audio_state: 5
+  video_state: 5
+  audio_len: 32000
+  video_len: 50
+
+  audio_bn_params:
+    pre_norm_type: gLN
+    pre_act_type: ReLU
+    out_chan: 256
+    kernel_size: 1
+    is2d: false
+
+  video_bn_params:
+    pre_norm_type: gLN
+    pre_act_type: ReLU
+    out_chan: 256
+    kernel_size: 1
+    is2d: false
+
+  enc_dec_params:
+    encoder_type: STFTSimpleEncoder
+    decoder_type: STFTSimpleDecoder
+    win: 256
+    hop_length: 16
+#    out_chan: 256
+#    kernel_size: 3
+#    stride: 1
+#    bias: false
+    act_type:
+    norm_type:
+
+  mask_generation_params:
+    mask_generator_type: MaskGenerator
+    mask_act: ReLU
+    RI_split: true
+    is2d: false
