@@ -11,3 +11,8 @@ Code repo for the 2025 ICMLWMLA workshop submission
  * Training main pipeline follow this abstract class: https://github.com/Information-Fusion-Lab-Umass/BottleneckIterativeNetwork/blob/260ff8112cfd343a20e092c84301e46fb9dc1dc0/engines/double_separation.py#L47
  * Training pipeline for `BIN` on LRS3 is here: https://github.com/Information-Fusion-Lab-Umass/BottleneckIterativeNetwork/blob/260ff8112cfd343a20e092c84301e46fb9dc1dc0/engines/double_separation.py#L621
  * Training pipeline for `BIN` on NTCD-TIMIT is here: https://github.com/Information-Fusion-Lab-Umass/BottleneckIterativeNetwork/blob/260ff8112cfd343a20e092c84301e46fb9dc1dc0/engines/double_separation.py#L1103
+
+
+## Evaluation
+ * sbatch scripts follow the name of `eval_<data>_<model>.sh`, for example sbatch/eval_lrs3wham_prombt.sh
+ * This isolated evaluations script generates the separated audio tracks for each test mixture audio track, instead of just give an overall performance evaluation as the one in the training process
