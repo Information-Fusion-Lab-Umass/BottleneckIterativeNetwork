@@ -1,0 +1,106 @@
+audionet:
+    n_src: 2
+    pretrained_vout_chan: 1024                 # output from pretrained model
+
+    num_blocks: 12
+    audio_fusion_dim: 128
+    video_fusion_dim: 512
+    video_len: 50
+    audio_F: 251
+    audio_T: 129
+
+    video_bn_params:
+      kernel_size: -1
+
+    audio_bn_params:
+      pre_norm_type: gLN
+      pre_act_type: ReLU
+      out_chan: 256
+      kernel_size: 1
+      is2d: true
+
+    enc_dec_params:
+      encoder_type: STFTEncoder
+      decoder_type: STFTDecoder
+      win: 256
+      hop_length: 128
+      out_chan: 256
+      kernel_size: 3
+      stride: 1
+      bias: false
+      act_type:
+      norm_type:
+
+    audio_params:
+      audio_net: TDANet
+      # in_chan same as audio_bn_chan
+      hid_chan: 64
+      kernel_size: 4
+      stride: 2
+      norm_type: gLN
+      act_type: PReLU
+      upsampling_depth: 2
+#      repeats: 12
+      shared: true
+      is2d: true
+      layers:
+        layer_1:
+          layer_type: DualPathRNN
+          hid_chan: 32
+          dim: 4
+          kernel_size: 8
+          stride: 1
+#          rnn_type: SRU
+          rnn_type: LSTM
+          num_layers: 4
+          bidirectional: true
+        layer_2:
+          layer_type: DualPathRNN
+          hid_chan: 32
+          dim: 3
+          kernel_size: 8
+          stride: 1
+#          rnn_type: SRU
+          rnn_type: LSTM
+          num_layers: 4
+          bidirectional: true
+        layer_3:
+          layer_type: MultiHeadSelfAttention2D
+          dim: 3
+          n_freqs: 64
+          n_head: 4
+          hid_chan: 4
+          act_type: PReLU
+          norm_type: LayerNormalization4D
+
+    video_params:
+      video_net: TDANet
+      # in_chan same as video_bn_chan
+      hid_chan: 64
+      kernel_size: 3
+      stride: 2
+      norm_type: BatchNorm1d
+      act_type: PReLU
+      upsampling_depth: 4
+#      repeats: 1
+      shared: true
+      is2d: false
+      layers:
+        layer_1:
+          layer_type: GlobalAttention
+          ffn_name: FeedForwardNetwork
+          kernel_size: 3
+          n_head: 8
+          dropout: 0.1
+
+    fusion_params:
+      fusion_type: ATTNFusion
+      fusion_shared: true
+      kernel_size: 4
+      is2d: true
+
+    mask_generation_params:
+      mask_generator_type: MaskGenerator
+      mask_act: ReLU
+      RI_split: true
+      is2d: true

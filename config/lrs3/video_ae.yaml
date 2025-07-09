@@ -1,0 +1,16 @@
+exp_name: video_autoencoder
+
+data:
+  mixture_index_dir: datasets/lrs3
+  clean_audio_dir: datasets/lrs3/audio
+  visual_feature_dir: datasets/lrs3/video_processed
+  train_file: mix_2_spk_train_fully_overlapped_only_6000.txt
+  valid_file: mix_2_spk_valid_fully_overlapped_only_2000.txt
+  test_file: mix_2_spk_test_fully_overlapped_only_3000.txt
+
+train:
+  need_train: True
+  batch_size: 16
+  max_epoch: 3000
+  lr: 0.01
+  weight_decay: 0.01
