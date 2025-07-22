@@ -3,6 +3,19 @@ Code repo for the 2025 ICMLWMLA workshop submission.
 
 [Webpage for the project](https://stonezhng.github.io/projects/avssbin/)
 
+```
+@misc{zhang2025audiovisualspeechseparationbottleneck,
+      title={Audio-Visual Speech Separation via Bottleneck Iterative Network}, 
+      author={Sidong Zhang and Shiv Shankar and Trang Nguyen and Andrea Fanelli and Madalina Fiterau},
+      year={2025},
+      eprint={2507.07270},
+      archivePrefix={arXiv},
+      primaryClass={cs.SD},
+      url={https://arxiv.org/abs/2507.07270}, 
+}
+```
+
+
 ## Models
  * `profusion_mbt` or `prombt` are alternative/historical names of our proposed `Bottleneck Iterative Network`
  * `avlit`, `iia` (short for `IIA-Net`), `rtfs` (short for `RTFS-Net`) are benchmarks models studied in our work
